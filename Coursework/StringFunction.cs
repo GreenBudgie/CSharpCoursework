@@ -27,7 +27,10 @@ namespace Coursework
         public double EvaluateAt(double x)
         {
             expression.Parameters["x"] = x;
-            return (double) expression.Evaluate();
+            double result = (double) expression.Evaluate();
+            if (Double.IsNaN(result) || Double.IsInfinity(result)) 
+                throw new EvaluationException("Cannot evaluate function at x = " + x);
+            return result;
         }
 
         /*
