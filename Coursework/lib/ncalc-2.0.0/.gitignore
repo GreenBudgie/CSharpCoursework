@@ -1,0 +1,11 @@
+/.vs
+/Evaluant.Calculator.Play/bin
+/Evaluant.Calculator.Play/obj
+/Evaluant.Calculator.Tests/bin
+/Evaluant.Calculator.Tests/obj
+/Evaluant.Calculator/bin
+/Evaluant.Calculator/obj
+/TestResults
+/packages
+/.axoCover
+/.temp

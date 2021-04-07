@@ -140,7 +140,7 @@ namespace Coursework
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 46);
             this.button1.TabIndex = 10;
-            this.button1.Text = "Рассчитать";
+            this.button1.Text = "Найти корень";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
