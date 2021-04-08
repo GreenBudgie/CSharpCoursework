@@ -56,6 +56,16 @@ namespace Coursework
             return this;
         }
 
+        public Logger Print(string text, Font font)
+        {
+            output.SelectionStart = output.TextLength;
+            output.SelectionLength = 0;
+            output.SelectionFont = font;
+            output.AppendText(text);
+            output.SelectionColor = output.ForeColor;
+            return this;
+        }
+
         public Logger Print(string text)
         {
             output.AppendText(text);

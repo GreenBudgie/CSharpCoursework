@@ -131,7 +131,8 @@ namespace Coursework
             this.epsSelector.Name = "epsSelector";
             this.epsSelector.Size = new System.Drawing.Size(144, 56);
             this.epsSelector.TabIndex = 4;
-            this.epsSelector.Value = 1;
+            this.epsSelector.Value = 3;
+            this.epsSelector.Scroll += new System.EventHandler(this.epsSelector_Scroll);
             // 
             // aInput
             // 
@@ -169,15 +170,16 @@ namespace Coursework
             this.clearButton.TabIndex = 12;
             this.clearButton.Text = "Очистить";
             this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // epsLabel
             // 
-            this.epsLabel.AutoSize = true;
             this.epsLabel.Location = new System.Drawing.Point(193, 243);
             this.epsLabel.Name = "epsLabel";
-            this.epsLabel.Size = new System.Drawing.Size(75, 24);
+            this.epsLabel.Size = new System.Drawing.Size(78, 24);
             this.epsLabel.TabIndex = 13;
-            this.epsLabel.Text = "0.00001";
+            this.epsLabel.Text = "epsilon";
+            this.epsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // outputBox
             // 
@@ -209,11 +211,14 @@ namespace Coursework
             this.Controls.Add(this.label1);
             this.Controls.Add(this.functionInput);
             this.Controls.Add(this.graphPanel);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Вычисление корня функции";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.epsSelector)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bInput)).EndInit();
