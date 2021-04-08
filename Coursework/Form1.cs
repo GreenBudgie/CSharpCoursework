@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antlr.Runtime;
+using System;
 using System.Windows.Forms;
 
 namespace Coursework
@@ -8,11 +9,13 @@ namespace Coursework
 
         Logger logger;
         public double Epsilon { get; set; }
+        GraphDrawer graphDrawer = null;
 
         public Form1()
         {
             InitializeComponent();
             logger = new Logger(outputBox);
+            graphPanel.Refresh();
         }
 
         private double GetEpsilon(int input)
@@ -58,12 +61,64 @@ namespace Coursework
                 double intervalB = (double) bInput.Value;
                 StringFunction func = new StringFunction(function);
                 decimal result = RootFinder.FindRoot(intervalA, intervalB, Epsilon, func.AsFunction());
-                decimal roundedResult = Decimal.Round(result, Epsilon.ToString().Length - 1);
+                decimal roundedResult = decimal.Round(result, Epsilon.ToString().Length - 1);
                 logger.Info("Корень: " + roundedResult);
             } catch(Exception ex)
             {
                 logger.Error(ex.Message);
             }
+        }
+
+        private void tryRedraw()
+        {
+            if (updateGraphCheckbox.Checked)
+            {
+                if (updateGraphDrawer())
+                {
+                    graphPanel.Refresh();
+                }
+            }
+        }
+
+        private bool updateGraphDrawer()
+        {
+            string function = functionInput.Text.Trim();
+            try
+            {
+                graphDrawer.Function = new StringFunction(function).AsFunction();
+                graphDrawer.SetInterval((double)aInput.Value, (double)bInput.Value);
+            }
+            catch (Exception) 
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void graphPanel_Paint(object sender, PaintEventArgs e)
+        {
+            if (graphDrawer == null) graphDrawer = new GraphDrawer((Panel)sender);
+            graphDrawer.Redraw(e.Graphics);
+        }
+
+        private void functionInput_TextChanged(object sender, EventArgs e)
+        {
+            tryRedraw();
+        }
+
+        private void aInput_ValueChanged(object sender, EventArgs e)
+        {
+            tryRedraw();
+        }
+
+        private void bInput_ValueChanged(object sender, EventArgs e)
+        {
+            tryRedraw();
+        }
+
+        private void updateGraphCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            tryRedraw();
         }
     }
 }

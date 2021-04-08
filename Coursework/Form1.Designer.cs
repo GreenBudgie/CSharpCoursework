@@ -45,6 +45,7 @@ namespace Coursework
             this.clearButton = new System.Windows.Forms.Button();
             this.epsLabel = new System.Windows.Forms.Label();
             this.outputBox = new System.Windows.Forms.RichTextBox();
+            this.updateGraphCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.epsSelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bInput)).BeginInit();
@@ -54,11 +55,12 @@ namespace Coursework
             // 
             this.graphPanel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.graphPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.graphPanel.Location = new System.Drawing.Point(392, 17);
+            this.graphPanel.Location = new System.Drawing.Point(393, 13);
             this.graphPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.graphPanel.Name = "graphPanel";
-            this.graphPanel.Size = new System.Drawing.Size(593, 586);
+            this.graphPanel.Size = new System.Drawing.Size(600, 600);
             this.graphPanel.TabIndex = 0;
+            this.graphPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.graphPanel_Paint);
             // 
             // functionInput
             // 
@@ -68,6 +70,8 @@ namespace Coursework
             this.functionInput.Name = "functionInput";
             this.functionInput.Size = new System.Drawing.Size(292, 28);
             this.functionInput.TabIndex = 1;
+            this.functionInput.Text = "x*x";
+            this.functionInput.TextChanged += new System.EventHandler(this.functionInput_TextChanged);
             // 
             // label1
             // 
@@ -151,6 +155,12 @@ namespace Coursework
             this.aInput.Name = "aInput";
             this.aInput.Size = new System.Drawing.Size(107, 28);
             this.aInput.TabIndex = 2;
+            this.aInput.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.aInput.ValueChanged += new System.EventHandler(this.aInput_ValueChanged);
             // 
             // bInput
             // 
@@ -173,11 +183,12 @@ namespace Coursework
             0,
             0,
             0});
+            this.bInput.ValueChanged += new System.EventHandler(this.bInput_ValueChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 345);
+            this.label6.Location = new System.Drawing.Point(8, 345);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 24);
             this.label6.TabIndex = 11;
@@ -207,16 +218,30 @@ namespace Coursework
             this.outputBox.Location = new System.Drawing.Point(12, 380);
             this.outputBox.Name = "outputBox";
             this.outputBox.ReadOnly = true;
-            this.outputBox.Size = new System.Drawing.Size(367, 223);
+            this.outputBox.Size = new System.Drawing.Size(367, 233);
             this.outputBox.TabIndex = 14;
             this.outputBox.Text = "";
+            // 
+            // updateGraphCheckbox
+            // 
+            this.updateGraphCheckbox.AutoSize = true;
+            this.updateGraphCheckbox.Checked = true;
+            this.updateGraphCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.updateGraphCheckbox.Location = new System.Drawing.Point(163, 277);
+            this.updateGraphCheckbox.Name = "updateGraphCheckbox";
+            this.updateGraphCheckbox.Size = new System.Drawing.Size(224, 28);
+            this.updateGraphCheckbox.TabIndex = 15;
+            this.updateGraphCheckbox.Text = "Обновление графика";
+            this.updateGraphCheckbox.UseVisualStyleBackColor = true;
+            this.updateGraphCheckbox.CheckedChanged += new System.EventHandler(this.updateGraphCheckbox_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1000, 619);
+            this.ClientSize = new System.Drawing.Size(1005, 622);
+            this.Controls.Add(this.updateGraphCheckbox);
             this.Controls.Add(this.outputBox);
             this.Controls.Add(this.epsLabel);
             this.Controls.Add(this.clearButton);
@@ -265,6 +290,7 @@ namespace Coursework
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Label epsLabel;
         private System.Windows.Forms.RichTextBox outputBox;
+        private System.Windows.Forms.CheckBox updateGraphCheckbox;
     }
 }
 

@@ -18,6 +18,14 @@ namespace Coursework
         {
             expression = new Expression(function);
             if (expression.HasErrors()) throw new Exception("Неверная запись функции");
+            expression.Parameters["x"] = 0; //Проверяем работоспособность функции
+            try
+            {
+                expression.Evaluate();
+            } catch(Exception)
+            {
+                throw new Exception("Неверная запись функции");
+            }
         }
 
         /*
