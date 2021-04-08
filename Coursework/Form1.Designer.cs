@@ -122,6 +122,7 @@ namespace Coursework
             this.findButton.TabIndex = 5;
             this.findButton.Text = "Найти корень";
             this.findButton.UseVisualStyleBackColor = true;
+            this.findButton.Click += new System.EventHandler(this.findButton_Click);
             // 
             // epsSelector
             // 
@@ -137,6 +138,16 @@ namespace Coursework
             // aInput
             // 
             this.aInput.Location = new System.Drawing.Point(47, 130);
+            this.aInput.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.aInput.Minimum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            -2147483648});
             this.aInput.Name = "aInput";
             this.aInput.Size = new System.Drawing.Size(107, 28);
             this.aInput.TabIndex = 2;
@@ -144,6 +155,16 @@ namespace Coursework
             // bInput
             // 
             this.bInput.Location = new System.Drawing.Point(197, 130);
+            this.bInput.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.bInput.Minimum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            -2147483648});
             this.bInput.Name = "bInput";
             this.bInput.Size = new System.Drawing.Size(107, 28);
             this.bInput.TabIndex = 3;

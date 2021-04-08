@@ -7,24 +7,15 @@ namespace Coursework
     {
 
         Logger logger;
-        double epsilon;
+        public double Epsilon { get; set; }
 
         public Form1()
         {
             InitializeComponent();
             logger = new Logger(outputBox);
-            try
-            {
-                StringFunction func = new StringFunction("Ln(Sin(x)) + 1");
-                double result = RootFinder.FindRoot(1, 3, 0.001, func.AsFunction());
-                //MessageBox.Show(result.ToString());
-            } catch(Exception e)
-            {
-                //MessageBox.Show(e.Message);
-            }
         }
 
-        public double GetEpsilon(int input)
+        private double GetEpsilon(int input)
         {
             switch(input)
             {
@@ -49,13 +40,30 @@ namespace Coursework
 
         private void UpdateEpsilonValue()
         {
-            epsilon = GetEpsilon(epsSelector.Value);
-            epsLabel.Text = ((decimal)epsilon).ToString();
+            Epsilon = GetEpsilon(epsSelector.Value);
+            epsLabel.Text = ((decimal)Epsilon).ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             UpdateEpsilonValue();
+        }
+
+        private void findButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string function = functionInput.Text.Trim();
+                double intervalA = (double) aInput.Value;
+                double intervalB = (double) bInput.Value;
+                StringFunction func = new StringFunction(function);
+                decimal result = RootFinder.FindRoot(intervalA, intervalB, Epsilon, func.AsFunction());
+                decimal roundedResult = Decimal.Round(result, Epsilon.ToString().Length - 1);
+                logger.Info("Корень: " + roundedResult);
+            } catch(Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
         }
     }
 }

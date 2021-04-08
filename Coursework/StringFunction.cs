@@ -17,7 +17,7 @@ namespace Coursework
         public StringFunction(string function)
         {
             expression = new Expression(function);
-            if (expression.HasErrors()) throw new Exception("Invalid function input");
+            if (expression.HasErrors()) throw new Exception("Неверная запись функции");
         }
 
         /*
@@ -29,7 +29,7 @@ namespace Coursework
             expression.Parameters["x"] = x;
             double result = (double) expression.Evaluate();
             if (Double.IsNaN(result) || Double.IsInfinity(result)) 
-                throw new EvaluationException("Cannot evaluate function at x = " + x);
+                throw new EvaluationException("Невозможно рассчитать значение функции в точке x = " + x);
             return result;
         }
 
