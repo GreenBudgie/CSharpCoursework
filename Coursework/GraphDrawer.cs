@@ -20,6 +20,7 @@ namespace Coursework
         private double shift;
         private int scale;
         private double drawingEpsilon;
+        public PointF Root { get; set; }
 
         public GraphDrawer(Panel panel)
         {
@@ -61,14 +62,16 @@ namespace Coursework
                 new SolidBrush(Color.Black), new Point(yAxisX + 5, 0));
         }
 
-        private void DrawGrid()
-        {
-            
-        }
-
         private void DrawGraph()
         {
             DrawGraphSegments(intervalA);
+            if(Root != null)
+            {
+                int absRootX = (int)((Root.X - shift) * scale + size / 2);
+                int absRootY = size - (int)(Root.Y * scale + size / 2);
+                gr.FillEllipse(new SolidBrush(Color.Blue), 
+                    new Rectangle(absRootX - 6, absRootY - 6, 12, 12));
+            }
         }
 
         private void DrawGraphSegments(double currentX)

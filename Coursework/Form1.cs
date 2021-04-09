@@ -1,5 +1,6 @@
 ﻿using Antlr.Runtime;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Coursework
@@ -63,10 +64,18 @@ namespace Coursework
                 decimal result = RootFinder.FindRoot(intervalA, intervalB, Epsilon, func.AsFunction());
                 decimal roundedResult = decimal.Round(result, Epsilon.ToString().Length - 1);
                 logger.Info("Корень: " + roundedResult);
+                graphDrawer.Root = new PointF((float) roundedResult, 
+                    (float)func.EvaluateAt((double)roundedResult));
             } catch(Exception ex)
             {
                 logger.Error(ex.Message);
             }
+            try
+            {
+                updateGraphDrawer();
+                graphPanel.Refresh();
+            }
+            catch { }
         }
 
         private void tryRedraw()
@@ -97,7 +106,11 @@ namespace Coursework
 
         private void graphPanel_Paint(object sender, PaintEventArgs e)
         {
-            if (graphDrawer == null) graphDrawer = new GraphDrawer((Panel)sender);
+            if (graphDrawer == null)
+            {
+                graphDrawer = new GraphDrawer((Panel)sender);
+                updateGraphDrawer();
+            }
             graphDrawer.Redraw(e.Graphics);
         }
 
